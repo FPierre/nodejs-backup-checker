@@ -1,0 +1,14 @@
+{
+  "name": "nodejs-backup-checker",
+  "version": "0.0.1",
+  "description": "Check your backup files",
+  "main": "index.js",
+  "author": "pflauder@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "fs-extra": "^4.0.2"
+  }
+}
