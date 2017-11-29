@@ -6,7 +6,7 @@
   "author": "pflauder@gmail.com",
   "license": "MIT",
   "scripts": {
-    "dev": "node index.js"
+    "dev": "node index.js backup.tar.gz"
   },
   "dependencies": {
     "fs-extra": "^4.0.2"
