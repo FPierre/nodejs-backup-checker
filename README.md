@@ -1,14 +1,26 @@
 # Node.js Backup Checker
 
-## Usage
-
-Compare `backup.tar.gz` file with expected result stored in `backup.json` configuration file:
+## Installation
 
 ```bash
-$ node index.js -c backup.json backup.tar.gz
+$ npm install -g nodejs-backup-checker
 ```
 
-Example `backup.json`:
+## Usage
+
+Generate the configuration file for an backup file:
+
+```bash
+$ nodejs-backup-checker -g /path/to/backup.tar.gz
+```
+
+Compare backup file with expected content stored in configuration file:
+
+```bash
+$ nodejs-backup-checker -c /path/to/backup.json /path/to/backup.tar.gz
+```
+
+Example of configuration file:
 
 ```json
 {
