@@ -10,8 +10,8 @@
   "preferGlobal": true,
   "version": "0.0.1",
   "scripts": {
-    "compare": "node index.js -c backup-.json",
-    "generate": "node index.js -g backup.tar.gz",
+    "compare": "node index.js -c sandbox/backup-.json",
+    "generate": "node index.js -g sandbox/backup.tar.gz",
     "unit": "ava test/unit",
     "test": "nyc ava test",
     "lint": "eslint --ext .js src test index.js"
