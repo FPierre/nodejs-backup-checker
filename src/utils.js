@@ -1,4 +1,12 @@
+const crypto = require('crypto')
 const fs = require('fs-extra')
+
+const sha1 = data => {
+  const generator = crypto.createHash('sha1')
+  generator.update(data)
+
+  return generator.digest('hex')
+}
 
 // OPTIMIZE
 const fileModeToHexa = mode => {
@@ -48,7 +56,7 @@ const systemGroups = async () => {
 }
 
 const fileStats = async path => {
-  const { birthtime, gid, mode, size, uid } = await fs.stat(path)
+  const { birthtime, gid, mode, mtime, size, uid } = await fs.stat(path)
 
   const access = fileModeToHexa(mode)
 
@@ -71,5 +79,6 @@ const fileStats = async path => {
 }
 
 module.exports = {
-  fileStats
+  fileStats,
+  sha1
 }

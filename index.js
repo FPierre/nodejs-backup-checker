@@ -1,22 +1,40 @@
+#!/usr/bin/env node
+
+const program = require('commander')
 const { fileStats } = require('./src/utils')
+const { readConfigFile } = require('./src/config-file')
+const { identical } = require('./src/compare')
 
 if (process.platform !== 'linux') {
   throw new Error('linux-user must be running on Linux')
 }
 
-if (process.argv.length <= 2) {
-  console.log(`Usage: ${__filename} path/to`)
-  process.exit(-1)
-}
+program
+  .version('0.0.1')
+  .option('-c, --configuration [file]', 'Configuration file')
+  .parse(process.argv)
 
-const path = process.argv[2]
+const configPath = program.configuration
 
-fileStats(path).then(d => console.log(d))
+readConfigFile(configPath).then(config => {
+  const { files } = config
 
-// fs.readJson('./package.json')
-//   .then(packageObj => {
-//     console.log(packageObj.version)
-//   })
-//   .catch(err => {
-//     console.error(err)
-//   })
+  files.forEach(file => {
+    console.log(file)
+
+    fileStats(file.path).then(d => {
+      console.log(d)
+
+      const iden = identical(d, file)
+      console.log(iden ? 'ok' : 'ko')
+    })
+  })
+})
+
+
+// if (process.argv.length <= 2) {
+//   console.log(`Usage: ${__filename} path/to`)
+//   process.exit(-1)
+// }
+
+// const path = process.argv[2]
