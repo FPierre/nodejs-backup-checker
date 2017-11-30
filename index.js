@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const program = require('commander')
-const { fileStats } = require('./src/utils')
-const { readConfigFile } = require('./src/config-file')
-const { identical } = require('./src/compare')
+
+const { compareConfig } = require('./src/compare-config')
+const { generateConfig } = require('./src/generate-config')
 
 if (process.platform !== 'linux') {
   throw new Error('linux-user must be running on Linux')
@@ -11,25 +11,19 @@ if (process.platform !== 'linux') {
 
 program
   .version('0.0.1')
-  .option('-c, --configuration [file]', 'Configuration file')
+  .option('-c, --configuration [file]', 'Configuration path')
+  .option('-g, --generate [file]', 'Backup path')
   .parse(process.argv)
 
-const configPath = program.configuration
+if (program.configuration) {
+  const configPath = program.configuration
+  compareConfig(configPath).then(console.log('compared'))
+}
 
-readConfigFile(configPath).then(config => {
-  const { files } = config
-
-  files.forEach(file => {
-    console.log(file)
-
-    fileStats(file.path).then(d => {
-      console.log(d)
-
-      const iden = identical(d, file)
-      console.log(iden ? 'ok' : 'ko')
-    })
-  })
-})
+if (program.generate) {
+  const backupPath = program.generate
+  generateConfig(backupPath).then(console.log('generated'))
+}
 
 // if (process.argv.length <= 2) {
 //   console.log(`Usage: ${__filename} path/to`)
