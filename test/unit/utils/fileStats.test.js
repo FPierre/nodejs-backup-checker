@@ -10,7 +10,7 @@ test('', async t => {
     group: undefined,
     path: './backup.tar.gz',
     size: 0,
-    user: undefined,
+    user: undefined
   }
 
   t.deepEqual(actual, expected)
