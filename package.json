@@ -8,11 +8,13 @@
   "scripts": {
     "dev": "node index.js -c backup.json backup.tar.gz",
     "unit": "ava test/unit",
+    "test": "nyc ava test",
     "lint": "eslint --ext .js src test index.js"
   },
   "dependencies": {
     "commander": "^2.12.2",
-    "fs-extra": "^4.0.2"
+    "fs-extra": "^4.0.2",
+    "nyc": "^11.3.0"
   },
   "devDependencies": {
     "ava": "^0.24.0",
@@ -22,6 +24,21 @@
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "statements": 90,
+    "branches": 90,
+    "functions": 90,
+    "lines": 90,
+    "include": [
+      "src/**/*.js"
+    ],
+    "reporter": [
+      "text-summary"
+    ],
+    "cache": true,
+    "all": true
   },
   "engines": {
     "node": ">= 8.5.0"

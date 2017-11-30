@@ -1,6 +1,4 @@
 const identical = (backupFile, configFile) => {
-  // return JSON.stringify(backupFile) === JSON.stringify(configFile)
-
   return backupFile.access === configFile.access &&
          backupFile.group === configFile.group &&
          backupFile.size === configFile.size &&

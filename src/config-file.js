@@ -1,3 +1,5 @@
+// TODO: check config file integrity
+
 const fs = require('fs-extra')
 
 const readConfigFile = async path => {

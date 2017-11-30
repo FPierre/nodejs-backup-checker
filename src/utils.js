@@ -1,13 +1,6 @@
 const crypto = require('crypto')
 const fs = require('fs-extra')
 
-const sha1 = data => {
-  const generator = crypto.createHash('sha1')
-  generator.update(data)
-
-  return generator.digest('hex')
-}
-
 // OPTIMIZE
 const fileModeToHexa = mode => {
   let access = ''
@@ -51,6 +44,13 @@ const systemGroups = async () => {
   } catch (e) {
     console.log(e)
   }
+}
+
+const sha1 = data => {
+  const generator = crypto.createHash('sha1')
+  generator.update(data)
+
+  return generator.digest('hex')
 }
 
 const fileStats = async path => {
