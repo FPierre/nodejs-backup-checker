@@ -15,7 +15,7 @@ Example `backup.json`:
   "files": [
     {
       "access": "rwxrwxrwx",
-      "group": "pierre",
+      "group": "pierre",       
       "path": "backup.tar.gz",
       "size": 100,
       "user": "pierre",
@@ -24,6 +24,15 @@ Example `backup.json`:
   ]
 }
 ```
+
+| Field  | Description                      | Required | Type    |
+| :----: | -------------------------------- | :------: | :-----: |
+| access | Expected file access             | true     | string  |
+| group  | Expected owner group             | true     | string  |
+| path   | Path to concerned file           | true     | string  |
+| size   | Minimum expected file size in Mo | false    | integer |
+| user   | Expected user name               | true     | string  |
+| sha1   | TODO                             | false    | string  |
 
 ## TODO
 
