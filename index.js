@@ -31,7 +31,6 @@ readConfigFile(configPath).then(config => {
   })
 })
 
-
 // if (process.argv.length <= 2) {
 //   console.log(`Usage: ${__filename} path/to`)
 //   process.exit(-1)

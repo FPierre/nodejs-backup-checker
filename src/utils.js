@@ -12,14 +12,14 @@ const sha1 = data => {
 const fileModeToHexa = mode => {
   let access = ''
 
-  access = access.concat(mode & 1 ? 'x' : '-',)
-  access = access.concat(mode & 2 ? 'w' : '-',)
-  access = access.concat(mode & 4 ? 'r' : '-',)
-  access = access.concat(mode & 10 ? 'x' : '-',)
-  access = access.concat(mode & 20 ? 'w' : '-',)
-  access = access.concat(mode & 40 ? 'r' : '-',)
-  access = access.concat(mode & 100 ? 'x' : '-',)
-  access = access.concat(mode & 200 ? 'w' : '-',)
+  access = access.concat(mode & 1 ? 'x' : '-')
+  access = access.concat(mode & 2 ? 'w' : '-')
+  access = access.concat(mode & 4 ? 'r' : '-')
+  access = access.concat(mode & 10 ? 'x' : '-')
+  access = access.concat(mode & 20 ? 'w' : '-')
+  access = access.concat(mode & 40 ? 'r' : '-')
+  access = access.concat(mode & 100 ? 'x' : '-')
+  access = access.concat(mode & 200 ? 'w' : '-')
   access = access.concat(mode & 400 ? 'r' : '-')
 
   return access
@@ -42,21 +42,19 @@ const systemGroups = async () => {
     const groups = content.toString().split('\n')
 
     return groups.map(group => group.split(':')[0])
-
-      // const [name, , gid] = group.split(':')
-      //
-      // return {
-      //   name,
-      //   gid: Number(gid)
-      // }
-    // })
+    // const [name, , gid] = group.split(':')
+    //
+    // return {
+    //   name,
+    //   gid: Number(gid)
+    // }
   } catch (e) {
     console.log(e)
   }
 }
 
 const fileStats = async path => {
-  const { birthtime, gid, mode, mtime, size, uid } = await fs.stat(path)
+  const { birthtime, mode, size, uid } = await fs.stat(path)
 
   const access = fileModeToHexa(mode)
 
@@ -65,8 +63,8 @@ const fileStats = async path => {
   const users = await systemUsers()
   const groups = await systemGroups()
 
-  const user = users.find(user => user.uid = uid)
-  const group = groups.find(group => group.uid = uid)
+  const user = users.find(user => user.uid === uid)
+  const group = groups.find(group => group.uid === uid)
 
   return {
     access,
