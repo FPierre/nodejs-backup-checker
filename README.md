@@ -1,6 +1,8 @@
-# Node.js Backup Checker [![Build Status](https://travis-ci.org/FPierre/nodejs-backup-checker.svg?branch=master)](https://travis-ci.org/FPierre/nodejs-backup-checker) [![Coverage Status](https://coveralls.io/repos/fpierre/nodejs-backup-checker//badge.svg?branch=master)](https://coveralls.io/r/fpierre/nodejs-backup-checker/?branch=master)
+# Node.js Backup Checker
 
-Read-only verification: it does not change your backup content.
+[![npm Package](https://img.shields.io/npm/v/nodejs-backup-checker.svg?style=flat-square)](https://www.npmjs.com/package/nodejs-backup-checker) [![Build Status](https://travis-ci.org/FPierre/nodejs-backup-checker.svg?branch=master)](https://travis-ci.org/FPierre/nodejs-backup-checker) [![Coverage Status](https://coveralls.io/repos/fpierre/nodejs-backup-checker//badge.svg?branch=master)](https://coveralls.io/r/fpierre/nodejs-backup-checker/?branch=master)
+
+* Read-only verification: it does not change your backup content.
 
 ## Installation
 
@@ -10,7 +12,7 @@ $ npm install -g nodejs-backup-checker
 
 ## Usage
 
-Generate the configuration file for an backup file:
+Generate the configuration file for a backup file:
 
 ```bash
 $ nodejs-backup-checker generate /path/to/backup.tar.gz
@@ -55,3 +57,5 @@ Example of configuration file:
 * Write log file to report compare
 * `generate` command must take `-c` option to provide configuration file path
 * Improve test isolation (related to filesystem)
+* Rename `identicalConfig` to `isSameAsConfig`
+* Test with multiple backup files
