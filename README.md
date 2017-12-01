@@ -5,7 +5,7 @@ Read-only verification: it does not change your backup content.
 ## Installation
 
 ```bash
-$ yarn install -g nodejs-backup-checker
+$ npm install -g nodejs-backup-checker
 ```
 
 ## Usage
