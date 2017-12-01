@@ -65,8 +65,6 @@ const sha1 = data => {
 const fileStats = async filePath => {
   const { birthtime, gid, mode, size, uid } = await fs.stat(filePath)
 
-  // OPTIMIZE: do not change often, use cache?
-  // https://github.com/wxygeek/linux-user/blob/master/lib/user.js
   const users = await systemUsers()
   const groups = await systemGroups()
   const { user } = users.find(user => user.uid === uid)

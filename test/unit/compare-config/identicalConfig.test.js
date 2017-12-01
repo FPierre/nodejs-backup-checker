@@ -1,4 +1,3 @@
-const path = require('path')
 const test = require('ava')
 
 const { identicalConfig } = require('../../../src/compare-config')
