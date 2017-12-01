@@ -1,5 +1,6 @@
 const crypto = require('crypto')
 const fs = require('fs-extra')
+const path = require('path')
 
 // OPTIMIZE
 const fileModeToHexa = mode => {
@@ -61,25 +62,22 @@ const sha1 = data => {
   return generator.digest('hex')
 }
 
-const fileStats = async path => {
-  const { birthtime, gid, mode, size, uid } = await fs.stat(path)
-
-  const access = fileModeToHexa(mode)
+const fileStats = async filePath => {
+  const { birthtime, gid, mode, size, uid } = await fs.stat(filePath)
 
   // OPTIMIZE: do not change often, use cache?
   // https://github.com/wxygeek/linux-user/blob/master/lib/user.js
   const users = await systemUsers()
   const groups = await systemGroups()
-
   const { user } = users.find(user => user.uid === uid)
   const { group } = groups.find(group => group.gid === gid)
 
   return {
-    access,
+    access: fileModeToHexa(mode),
     birthtime,
     group,
-    path,
-    size: size / 1000000.0,
+    path: path.resolve(filePath),
+    sizeMo: size / 1000000.0,
     user
   }
 }

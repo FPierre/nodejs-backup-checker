@@ -11,7 +11,7 @@ const writeReport = (path, report) => {
 }
 
 const generateConfig = async backupPath => {
-  const configPath = `./sandbox/nodejs-backup-checker-${new Date()}.json`
+  const configPath = './sandbox/nodejs-backup-checker.json'
   const stats = await fileStats(backupPath)
 
   return writeReport(configPath, stats)
