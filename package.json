@@ -1,21 +1,22 @@
 {
   "author": "pflauder@gmail.com",
   "bin": {
-    "nodejs-backup-checker": "bin/nodejs-backup-checker.js"
+    "nodejs-backup-checker": "bin/nodejs-backup-checker",
+    "nodejs-backup-checker-compare": "bin/nodejs-backup-checker-compare",
+    "nodejs-backup-checker-generate": "bin/nodejs-backup-checker-generate"
   },
   "description": "Check your backup files",
   "license": "MIT",
-  "main": "index.js",
   "name": "nodejs-backup-checker",
   "preferGlobal": true,
-  "version": "0.0.1",
   "scripts": {
-    "compare": "node index.js -c sandbox/backup-.json",
-    "generate": "node index.js -g sandbox/backup.tar.gz",
+    "compare": "node bin/nodejs-backup-checker-compare sandbox/nodejs-backup-checker.json",
+    "generate": "node bin/nodejs-backup-checker-generate sandbox/backup.tar.gz",
     "unit": "ava test/unit",
     "test": "nyc ava test",
     "lint": "eslint --ext .js src test index.js"
   },
+  "version": "0.0.1",
   "dependencies": {
     "commander": "^2.12.2",
     "fs-extra": "^4.0.2"
