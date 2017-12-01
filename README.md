@@ -1,5 +1,4 @@
-
-# Node.js Backup Checker
+# Node.js Backup Checker [![Coverage Status](https://coveralls.io/repos/fpierre/nodejs-backup-checker//badge.svg?branch=master)](https://coveralls.io/r/fpierre/nodejs-backup-checker/?branch=master)
 
 Read-only verification: it does not change your backup content.
 
@@ -51,7 +50,8 @@ Example of configuration file:
 
 ## TODO
 
-* sha1 for compare
-* check config file integrity before compare
-* write log file to report compare
+* sha1 for `compare` command
+* Check config file integrity before compare
+* Write log file to report compare
 * `generate` command must take `-c` option to provide configuration file path
+* Improve test isolation (related to filesystem)
