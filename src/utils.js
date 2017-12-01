@@ -23,7 +23,14 @@ const systemUsers = async () => {
     let content = await fs.readFile('/etc/passwd')
     const users = content.toString().split('\n')
 
-    return users.map(user => user.split(':')[0])
+    return users.map(user => {
+      const [name, , uid] = user.split(':')
+
+      return {
+        user: name,
+        uid: Number(uid)
+      }
+    })
   } catch (e) {
     console.log(e)
   }
@@ -34,13 +41,14 @@ const systemGroups = async () => {
     let content = await fs.readFile('/etc/group')
     const groups = content.toString().split('\n')
 
-    return groups.map(group => group.split(':')[0])
-    // const [name, , gid] = group.split(':')
-    //
-    // return {
-    //   name,
-    //   gid: Number(gid)
-    // }
+    return groups.map(group => {
+      const [name, , gid] = group.split(':')
+
+      return {
+        group: name,
+        gid: Number(gid)
+      }
+    })
   } catch (e) {
     console.log(e)
   }
@@ -54,7 +62,7 @@ const sha1 = data => {
 }
 
 const fileStats = async path => {
-  const { birthtime, mode, size, uid } = await fs.stat(path)
+  const { birthtime, gid, mode, size, uid } = await fs.stat(path)
 
   const access = fileModeToHexa(mode)
 
@@ -63,8 +71,8 @@ const fileStats = async path => {
   const users = await systemUsers()
   const groups = await systemGroups()
 
-  const user = users.find(user => user.uid === uid)
-  const group = groups.find(group => group.uid === uid)
+  const { user } = users.find(user => user.uid === uid)
+  const { group } = groups.find(group => group.gid === gid)
 
   return {
     access,
