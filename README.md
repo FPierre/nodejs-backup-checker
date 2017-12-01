@@ -27,7 +27,7 @@ Example of configuration file:
   "files": [
     {
       "access": "rwxrwxrwx",
-      "group": "pierre",       
+      "group": "pierre",
       "path": "backup.tar.gz",
       "size": 100,
       "user": "pierre",
@@ -41,13 +41,11 @@ Example of configuration file:
 | :----: | -------------------------------- | :------: | :-----: |
 | access | Expected file access             | true     | string  |
 | group  | Expected owner group             | true     | string  |
-| path   | Path to concerned file           | true     | string  |
+| path   | Absolute path to concerned file  | true     | string  |
 | size   | Minimum expected file size in Mo | false    | integer |
 | user   | Expected user name               | true     | string  |
 | sha1   | TODO                             | false    | string  |
 
 ## TODO
 
-* Interactive mode
-* CLI mode (e.g with CRON)
-* Do not include email send (OS responsability)
+* sha1 for compare
