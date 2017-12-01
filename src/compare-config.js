@@ -1,22 +1,25 @@
-const { readConfigFile } = require('./config-file')
+const fs = require('fs-extra')
 const { fileStats } = require('./utils')
 
-const identical = (backupFile, configFile) => {
-  return backupFile.access === configFile.access &&
-         backupFile.group === configFile.group &&
-         backupFile.size === configFile.size &&
-         backupFile.user === configFile.user
+const identical = (backupStats, configStats) => {
+  return backupStats.access === configStats.access &&
+         backupStats.group === configStats.group &&
+         backupStats.size === configStats.size &&
+         backupStats.user === configStats.user
 }
 
 const compareConfig = async configPath => {
-  const config = await readConfigFile(configPath)
+  const { files: filesConfig } = await fs.readJson(configPath)
 
-  config.files.forEach(file => {
-    // console.log(file)
-    const backup = fileStats(file.path)
-    // console.log(backup)
-    console.log(identical(backup, file) ? 'ok' : 'ko')
-  })
+  for (const fileConfig of filesConfig) {
+    const stats = await fileStats(fileConfig.path)
+
+    // console.log(fileConfig)
+    // console.log(stats)
+
+    console.log(identical(stats, fileConfig) ? 'ok' : 'ko')
+    return identical(stats, fileConfig)
+  }
 }
 
 module.exports = {

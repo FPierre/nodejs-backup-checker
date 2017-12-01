@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "access": "--r-wrxwr",
+      "birthtime": "2017-12-01T07:52:01.218Z",
+      "group": "root",
+      "path": "/home/pierre/workplace/nodejs-backup-checker/sandbox/backup.tar.gz",
+      "sizeMo": 0,
+      "user": "pierre"
+    }
+  ]
+}
