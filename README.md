@@ -1,4 +1,4 @@
-# Node.js Backup Checker [![Coverage Status](https://coveralls.io/repos/fpierre/nodejs-backup-checker//badge.svg?branch=master)](https://coveralls.io/r/fpierre/nodejs-backup-checker/?branch=master)
+# Node.js Backup Checker [![Build Status](https://img.shields.io/travis/fpierre/nodejs-backup-checker.svg)](https://circleci.com/gh/fpierre/nodejs-backup-checker) [![Coverage Status](https://coveralls.io/repos/fpierre/nodejs-backup-checker//badge.svg?branch=master)](https://coveralls.io/r/fpierre/nodejs-backup-checker/?branch=master)
 
 Read-only verification: it does not change your backup content.
 
